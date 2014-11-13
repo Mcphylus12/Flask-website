@@ -1,0 +1,73 @@
+#gallery{
+    margin-top: 60px;
+    padding: 0;
+    text-align: left;
+    display: block;
+    width: 100%;
+    overflow: auto;
+
+}
+
+
+#gallery h1{
+    padding: 5px;
+    display: block;
+}
+
+#gallery #scroll{
+    border: 1px solid black;
+    overflow-x: scroll;
+    background-color: rgba(0, 0, 0, 0.4);/* use a black translucent background to make it look like the gallery is depressed into the webpage */
+}
+
+#gallery ul{
+
+    white-space: nowrap;/* the first 3 properties are used to keep the images in one line and go
+    offscreen rather than wrap to a new line */
+    float: left;
+    margin-right: -999em;
+    list-style: none;
+}
+
+#gallery li{
+    margin: 15px;
+    text-align: center;
+    float: left;
+    display: inline;
+}
+
+
+
+#gallery img {
+    border:0;
+    display: block;/* put caption under image */
+    border: 1px solid black;
+    height: 100px;
+}
+
+#gallery span{
+    display:block;
+    padding: 5px 0;
+    overflow: hidden;
+}
+
+#lightbox {/* The formatting for lightbox when it appear */
+    position: fixed; /* make the image appear over the rest of th webpage */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.8);/* darken the rest of the page */
+}
+
+#lightbox p{
+    text-align: right;
+    color: white;
+    margin-right: 20px;
+    font-size: 12px;
+}
+
+#lightbox img{
+    max-width: 70%;
+}

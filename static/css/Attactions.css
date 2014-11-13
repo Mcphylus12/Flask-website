@@ -1,0 +1,36 @@
+#gmap{
+
+    height:100%;
+    width:100%
+
+}
+
+
+
+#gmapblock{
+    width: 100%;
+    height: 50vh;/* vh is an arbitrary unit that scales with the browser view. This is the only dynamic way I could format an iframe */
+    overflow: hidden;
+    display: inline-block;
+}
+
+.halfblock{
+    width: 100%;
+    height:40%;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.halfblock section{/* Each venue has a section in the list */
+    border: 2px solid white;
+    width: 48%;
+    min-height: 200px;
+    display: inline-block;
+    vertical-align: text-top;
+    margin-bottom: 10px;
+
+}
+
+.halfblock section p{
+    text-align: left
+}

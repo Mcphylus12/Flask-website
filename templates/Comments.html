@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en"> <!-- Lets browser knows we are using english as default in this webpage -->
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8"/><!-- Used for website validation -->
+    <title>Ongar Bell|Comments</title>
+    <link rel="stylesheet" href="css/main.css" /><!-- add our styling sheet -->
+    <link rel="stylesheet" href="css/Comments.css" /><!-- add sheet for the comment page -->
+    <script src="https://code.jquery.com/jquery-1.6.2.min.js"></script>
+    <script type="text/javascript" src="js/Comments.js"></script><!-- Add javascript so our comments work -->
+</head>
+<body onload="showCom()"><!-- Load our comments in when the page loads -->
+    <div id="big_wrapper">
+        <nav>
+            <ul> <!-- nav bar -->
+                <li><a href="Home.html">Home</a></li>
+                <li><a href="Gallery.html">Gallery</a></li>
+                <li><a href="Comments.html">Comments</a></li>
+                <li><a href="Attractions.html">Attractions</a></li>
+                <li><a href="Contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <div id="mid_content">
+            <div id="addComment">
+                <h2>Add a Comment</h2>
+                <!-- Input area for adding comments. After misplacing my form tags i found i dont need any for this to work so i left them out -->
+                <p>Name: </p><input id="namebox" type="text" name="uname"/>
+                <br />
+                <textarea id="textbox" rows="6" cols="50" name="ucomment" ></textarea>
+                <br />
+                <button type="submit" onclick="submitCom()">Submit</button>
+                <button type="reset" onclick="clearCom()">Clear</button>
+            </div>
+            <div id="comments"><!-- list of comments. Javascipt dynamically loads our comments in here. Only works locally -->
+            </div>
+        </div>
+        <footer><!-- Footer content -->
+        <p></p>
+        </footer>
+    </div>
+</body>
+</html>

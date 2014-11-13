@@ -1,0 +1,17 @@
+#mid_content{
+    text-align: center;
+    padding: 0;
+}
+
+#mid_content h1{
+text-align: inherit;
+}
+
+#mid_content ul{
+    padding: 30px;
+    list-style-type: none;
+}
+
+#mid_content ul li{
+    padding: 1ex;
+}

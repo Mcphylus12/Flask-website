@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en"> <!-- Lets browser knows we are using english as default in this webpage -->
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- Used for website validation -->
+    <title>Ongar Bell|Gallery</title>
+    <link rel="stylesheet" href="css/main.css" /><!-- add our styling sheet -->
+    <link rel="stylesheet" href="css/Gallery.css" /><!-- add sheet for the gallery page -->
+    <script src="https://code.jquery.com/jquery-1.6.2.min.js"></script>
+    <script type="text/javascript" src="js/Gallery.js"></script><!-- Include javascript files for the lightbox functionality -->
+</head>
+<body>
+    <div id="big_wrapper"> <!-- a wrapper used so we can leave margins on the sides -->
+        <nav>
+            <ul> <!-- navigation bar -->
+                <li><a href="Home.html">Home</a></li>
+                <li><a href="Gallery.html">Gallery</a></li>
+                <li><a href="Comments.html">Comments</a></li>
+                <li><a href="Attractions.html">Attractions</a></li>
+                <li><a href="Contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <div id="mid_content">
+            <div id="gallery"><!-- list images for the image gallery -->
+                <h1>Gallery</h1>
+                <h4>click on an image to view it larger</h4>
+                <div id="scroll">
+                    <ul><!-- Each image calls the lightbox function on click and passes its own image element through as a parameter.
+                        The spans are captions -->
+                        <li><img src="pics/1.jpg" onclick="lightbox(this);" alt="image missing" /><span>The Ongar Bell</span></li>
+                        <li><img src="pics/2.jpg" onclick="lightbox(this);" alt="image missing" /><span>The bar area</span></li>
+                        <li><img src="pics/3.jpg" onclick="lightbox(this);" alt="image missing" /><span>Snooker Table and<br /> free fruit machines</span></li>
+                        <li><img src="pics/4.jpg" onclick="lightbox(this);" alt="image missing" /><span>Thi dining area</span></li>
+                        <li><img src="pics/5.jpg" onclick="lightbox(this);" alt="image missing" /><span>One of the en suite<br />bedrooms</span></li>
+                        <li><img src="pics/6.jpg" onclick="lightbox(this);" alt="image missing" /><span>The lounge area<br />with Xbox and Wii</span></li>
+                        <li><img src="pics/7.jpg" onclick="lightbox(this);" alt="image missing" /><span>Another en suite<br />bedroom</span></li>
+                        <li><img src="pics/8.jpg" onclick="lightbox(this);" alt="image missing" /><span>Wider shot of the<br />bar area</span></li>
+                        <li><img src="pics/9.jpg" onclick="lightbox(this);" alt="image missing" /><span>A smaller bedroom </span></li>
+                        <li><img src="pics/10.jpg" onclick="lightbox(this);" alt="image missing" /><span>Kitchen and dining area</span></li>
+                        <li><img src="pics/11.jpg" onclick="lightbox(this);" alt="image missing" /><span>The master bedroom</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <footer><!-- Footer content -->
+        <p></p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,100 @@
+*{/* Remove all the default padding */
+    margin:0;
+    padding:0;
+}
+
+h1{
+    text-align: left;
+    font: bold x-large Tahoma;
+}
+
+h2{
+    text-align: left;
+    font: bold large Tahoma;
+}
+
+body{
+    text-align: center; /* keep our website centered */
+    background-image: url(../pics/bg.jpg);
+    background-position: center;
+    background-size: 100%;
+    background-repeat: repeat-y;
+
+}
+
+nav{
+    overflow: hidden;
+}
+
+nav ul{
+    list-style-type: none;
+    width: 100%;
+    height: 40px;/* keep our nav a constant height so people can aloways use it regardless of screen size */
+    padding: 0;
+    margin: 0;
+    overflow: inherit
+}
+
+nav ul li{
+    margin:1px;/* make sure that any effects from hovering over the button disppear even if the mouse
+    is moved from the button straight out of the window*/
+    border-right: 1px solid black;
+    float:left;
+    height: inherit;
+    vertical-align: middle;
+    width:19.5%;/*keep all the nav elements on one line*/
+    text-align: center;
+    background-color: #0f0f0f;
+    transition: text-shadow 0.2s linear 0s;/* have a slowed transition to the text shadowing on hover */
+    -webkit-transition: text-shadow 0.2s linear 0s;/* compatibility with older versions of chrome and safari */
+}
+
+nav ul li:last-child{
+    border: none;
+}
+
+nav ul li:hover{/* this formatting occurs if the element is hovered over */
+    text-shadow: 0 0 0.2em #fff, 0 0 0.2em #fff, 0 0 0.2em #fff; /* stack up 3 shadows with 0 offset behinf the text to give the appearance of a glow */
+    transition: text-shadow 0.2s linear 0s;
+    -webkit-transition: text-shadow 0.2s linear 0s;
+}
+
+nav ul li a{/* used to make the whole block clickable and not just a small box around the text */
+    padding: 10px;
+    display: block;
+    text-decoration: none;
+    color: white;
+    font-family: Tahoma;
+
+
+}
+
+#mid_content{/* wrapper for main content on each page. most of these attributes are overwritten on each pages css */
+    color: white;
+    padding: 50px;
+    margin: 0 auto;
+    clear: both;/* remove any float formatting */
+    display: block;
+    width: 80%;/* give our website some margins */
+    height: auto;
+    bottom: 20px;/* keep room for the footer */
+    overflow: hidden;
+
+}
+
+
+
+footer{/* footer that sticks to bottom of the browser view */
+    border-top: 1px solid black;
+    width: 100%;
+    position: fixed;
+    clear: both;
+    bottom: 0;
+    height: 3ex;
+    background-color: #0f0f0f;
+    color: white;
+}
+
+footer p:after{
+    content:" Made By Kyle Alexander "
+}

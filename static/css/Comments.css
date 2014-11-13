@@ -1,0 +1,54 @@
+#comments h1{
+
+}
+
+#addComment{
+    padding: 10px;
+    text-align: center;
+}
+
+#addComment h2{
+    padding-bottom: 30px;
+    text-align: inherit
+}
+
+#namebox{
+
+}
+
+#addComment p{
+    text-align: left;
+    display: inline;
+}
+
+#addComment textarea{
+    margin-top: 10px;
+}
+
+#addComment button{
+    width: 80px;
+    padding: 5px auto;
+}
+
+#comments section{
+    word-wrap: break-word;
+    border: 1px solid black;
+    margin: 8px 10px;
+    background: white;
+}
+
+#comments section h4{
+    background: #273f40;
+    padding-left: 5px;
+    text-align: left;
+    padding: 5px 0;
+    font-family: Tahoma;
+    margin-bottom: 10px;
+    padding-left: 5px;
+}
+
+#comments section p{
+    text-indent: 2em;
+    text-align: left;
+    color: black;
+}
