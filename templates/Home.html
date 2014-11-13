@@ -1,24 +1,8 @@
-<!DOCTYPE html>
-<html lang="en"> <!-- Lets browser knows we are using english as default in this webpage -->
-<head>
-    <meta http-equiv="content-type" content="text/html;charset=utf-8"/><!-- Used for website validation -->
-    <title>Ongar Bell|Home</title>
-    <link rel="stylesheet" href="css/main.css" /><!-- add our main styling sheet -->
-    <link rel="stylesheet" href="css/Home.css" /><!-- add sheet for the home page -->
-</head>
-<body>
-    <div id="big_wrapper"> <!-- a wrapper used so we can leave margins on the sides -->
-        <nav>
-            <ul> <!-- navigation bar -->
-                <li><a href="Home.html">Home</a></li>
-                <li><a href="Gallery.html">Gallery</a></li>
-                <li><a href="Comments.html">Comments</a></li>
-                <li><a href="Attractions.html">Attractions</a></li>
-                <li><a href="Contact.html">Contact</a></li>
-            </ul>
-        </nav>
-        <div id="mid_content"><!-- wrapper for the main content of the page -->
-            <div id="home_content">
+{% extends "baseFrame.html" %}
+{% block title %}Ongar Bell|Home{% endblock %}
+{% block stylesheets %}<link rel="stylesheet" href="static/css/Home.css" />{% endblock %}
+{% block content %}
+ <div id="home_content">
                 <header>
                         <h1>BOOK NOW</h1>
                         <h2>Live in luxury for £400ppw</h2>
@@ -26,7 +10,7 @@
                 <div class="quarterblock"><!-- quartr blocks are used to break the page into four quarters.
                                             This is a methos of having content in the top left and bottom right -->
                     <div id="main_image">
-                        <img src="pics/1.jpg" alt="image missing" />
+                        <img src="static/pics/1.jpg" alt="image missing" />
                     </div>
                 </div>
                 <div class="quarterblock">
@@ -46,11 +30,4 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <footer><!-- Footer contents -->
-        <p></p>
-        </footer>
-
-    </div>
-</body>
-</html>
+{% endblock %}

@@ -1,23 +1,7 @@
-<!DOCTYPE html>
-<html lang="en"> <!-- Lets browser knows we are using english as default in this webpage -->
-<head>
-    <meta http-equiv="content-type" content="text/html;charset=utf-8"/><!-- Used for website validation -->
-    <title>Ongar Bell|Contact</title>
-    <link rel="stylesheet" href="css/main.css" /><!-- add our main styling sheet -->
-    <link rel="stylesheet" href="css/Contact.css" /><!-- add sheet for the home page -->
-</head>
-<body>
-<div id="big_wrapper"> <!-- a wrapper used so we can leave margins on the sides -->
-    <nav>
-        <ul> <!-- nav bar -->
-            <li><a href="Home.html">Home</a></li>
-            <li><a href="Gallery.html">Gallery</a></li>
-            <li><a href="Comments.html">Comments</a></li>
-            <li><a href="Attractions.html">Attractions</a></li>
-            <li><a href="Contact.html">Contact</a></li>
-        </ul>
-    </nav>
-    <div id="mid_content"><!-- wrapper for the main content of the page -->
+{% extends "baseFrame.html" %}
+{% block title %}Ongar Bell|Contact{% endblock %}
+{% block stylesheets %}<link rel="stylesheet" href="static/css/Contact.css" />{% endblock %}
+{% block content %}
         <h1>Contact Us</h1>
             <ul>
                 <li>Adress: 74 The street Town</li>
@@ -25,10 +9,5 @@
                 <li>Mobile: +44 0000000000</li>
                 <li>E-mail: fancy.house@gmail.com</li>
                 </ul>
-    </div>
-    <footer><!-- Footer content -->
-    <p></p>
-    </footer>
-    </div>
-</body>
-</html>
+{% endblock %}
+

@@ -1,23 +1,7 @@
-<!DOCTYPE html>
-<html lang="en"> <!-- Lets browser knows we are using english as default in this webpage -->
-<head>
-    <meta http-equiv="content-type" content="text/html;charset=utf-8"/><!-- Used for website validation -->
-    <title>Ongar Bell|Attractions</title>
-    <link rel="stylesheet" href="css/main.css" /><!-- add our main styling sheet -->
-    <link rel="stylesheet" href="css/Attactions.css" /><!-- add sheet for the page -->
-</head>
-<body>
-    <div id="big_wrapper"> <!-- a wrapper used so we can leave margins on the sides -->
-    <nav>
-        <ul> <!-- nav bar -->
-            <li><a href="Home.html">Home</a></li>
-            <li><a href="Gallery.html">Gallery</a></li>
-            <li><a href="Comments.html">Comments</a></li>
-            <li><a href="Attractions.html">Attractions</a></li>
-            <li><a href="Contact.html">Contact</a></li>
-        </ul>
-    </nav>
-    <div id="mid_content"><!-- wrapper for the main content of the page -->
+{% extends "baseFrame.html" %}
+{% block title %}Ongar Bell|Attractions{% endblock %}
+{% block stylesheets %}<link rel="stylesheet" href="static/css/Attactions.css" />{% endblock %}
+{% block content %}
         <div id="gmapblock"><!-- wrapper for the google map as iframe do not like css formatting -->
             <iframe id="gmap" src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d9890.567269934409!2d0.24400000000000008!3d51.70299945000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1s*2A!5e0!3m2!1sen!2suk!4v1414504147738">
                 Your Browser does not support google maps
@@ -95,10 +79,4 @@
                 </p>
             </section>
         </div>
-    </div>
-    <footer><!-- Footer content -->
-    <p></p>
-    </footer>
-    </div>
-</body>
-</html>
+{% endblock %}
