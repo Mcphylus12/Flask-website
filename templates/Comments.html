@@ -1,21 +1,27 @@
 {% extends "baseFrame.html" %}
 {% block title %}Ongar Bell|Comments{% endblock %}
 {% block stylesheets %}<link rel="stylesheet" href="static/css/Comments.css" />{% endblock %}
-{% block scripts %}
-    <script src="https://code.jquery.com/jquery-1.6.2.min.js"></script>
-    <script type="text/javascript" src="static/js/Comments.js"></script><!-- Add javascript so our comments work -->
-{% endblock %}
 {% block content %}
 <div id="addComment">
-                <h2>Add a Comment</h2>
-                <!-- Input area for adding comments. After misplacing my form tags i found i dont need any for this to work so i left them out -->
-                <p>Name: </p><input id="namebox" type="text" name="uname"/>
-                <br />
-                <textarea id="textbox" rows="6" cols="50" name="ucomment" ></textarea>
-                <br />
-                <button type="submit" onclick="submitCom()">Submit</button>
-                <button type="reset" onclick="clearCom()">Clear</button>
-            </div>
-            <div id="comments"><!-- list of comments. Javascipt dynamically loads our comments in here. Only works locally -->
-            </div>
+    {% if err %}<h1>Please make sure your comment has a body</h1>{% endif %}
+    <h2>Add a Comment</h2>
+    <form action="addComment" method="post">
+        <p>Name: </p><input id="namebox" type="text" name="uName"/>
+        <br />
+        <textarea id="textbox" rows="6" cols="50" name="uComment" ></textarea>
+        <br />
+        <input type="submit" value="Submit Comment" />
+        <input type="reset" value="Clear Comment" />
+    </form>
+</div>
+<div id="comments">
+    {% for comment in comList %}
+    <section>
+        <h4>{{ comment[2] }}  {{ comment[0] }}</h4>
+        <p>
+            {{ comment[1] }}
+        </p>
+    </section>
+    {% endfor %}
+</div>
 {% endblock %}
