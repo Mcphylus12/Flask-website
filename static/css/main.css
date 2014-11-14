@@ -42,7 +42,7 @@ nav ul li{
     float:left;
     height: inherit;
     vertical-align: middle;
-    width:19.5%;/*keep all the nav elements on one line*/
+    width:16%;/*keep all the nav elements on one line*/
     text-align: center;
     background-color: #0f0f0f;
     transition: text-shadow 0.2s linear 0s;/* have a slowed transition to the text shadowing on hover */

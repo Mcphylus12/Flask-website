@@ -17,7 +17,7 @@
 <div id="comments">
     {% for comment in comList %}
     <section>
-        <h4>{{ comment[2] }}  {{ comment[0] }}</h4>
+        <h4>posted on {{ comment[2] }} by {{ comment[0] }}</h4>
         <p>
             {{ comment[1] }}
         </p>

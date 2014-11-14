@@ -24,7 +24,7 @@ def comments():
 def addComment():
     uName = escape(request.form[('uName')]).replace('\n', ' ').replace('\r', ' ')
     uComment = (request.form[('uComment')]).replace('\n', ' ').replace('\r', ' ')
-    dateStr = time.strftime("%d-%m-%y %H:%M")
+    dateStr = time.strftime("%d-%m-%y")
     if uName == '':
         uName = 'Anonymous'
     comList = readFile("static/comments.csv")
@@ -43,6 +43,11 @@ def contact():
 @app.route('/gallery')
 def gallery():
     return render_template('Gallery.html')
+
+@app.route('/book')
+def book():
+    return render_template('Book.html')
+
 
 
 def readFile(File):
