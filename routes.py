@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 from cgi import escape #used to escape html special characters
-import time
 import csv
+import re
 
 app = Flask(__name__)
 
@@ -51,10 +51,22 @@ def book():
 @app.route('/processBooking', methods=['post'])
 def processBooking():#TODO perform regex checks on fields and set errorlist if any errors found
     errorList = [0]
+    dateRegex = re.compile('^([0-2]?[0-9]|3[0-1])/(0?[0-9]|1[0-2])/([0-9]?[0-9]?[0-9]?[0-9]?)$')
+    emailRegex = re.compile('\w+@\w+\.\w+')
     startDate = '/'.join([request.form[('startDateDay')], request.form[('startDateMonth')], request.form[('startDateYear')]])
     endDate = '/'.join([request.form[('startDateDay')], request.form[('startDateMonth')], request.form[('startDateYear')]])
     email = request.form[('email')]
     name = request.form[('name')]
+    if not(dateRegex.match(startDate)):
+        errorList[0] = 1
+        errorList.append('startdateformatexception')
+    if not(dateRegex.match(endDate)):
+        errorList[0] = 1
+        errorList.append('enddateformatexception')
+    if not(emailRegex.match(email)):
+        errorList[0] = 1
+        errorList.append('emailformatexception')
+
     bookList = readFile('static/booking.csv')
     bookList.append([startDate, endDate, name, email, False])
     writeFile('static/booking.csv', bookList)

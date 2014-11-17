@@ -2,19 +2,22 @@
 {% block title %}Ongar Bell|Book{% endblock %}
 {% block stylesheets %}<link rel="stylesheet" href="static/css/Book.css" />{% endblock %}
 {% block content %}
+<h2>Request a Reservation</h2>
 <form action="processBooking" method="post">
-    Name: <input type="text" name="name" /><br />
-    e-mail: <input type="text" name="email" /><br />
+    Name:<br /><input type="text" name="name" /><br />
+    e-mail:<br /> <input type="text" name="email" /><br />
     Date format : DD/MM/YYYY<br />
-    Start date: <input type="text" name="startDateDay" class="datein" />/<input type="text" name="startDateMonth" class="datein" />/<input type="text" name="startDateYear" class="datein" /><br />
-    End date: <input type="text" name="endDateDay" class="datein" />/<input type="text" name="endDateMonth" class="datein" />/<input type="text" name="endDateYear" class="datein" /><br />
-    <input type="submit" value="Submit request" />
-    <input type="reset" value="Reset form" />
+    Start date:<br /><input type="text" name="startDateDay" class="datein" />/<input type="text" name="startDateMonth" class="datein" />/<input type="text" name="startDateYear" class="datein" /><br />
+    End date:<br /><input type="text" name="endDateDay" class="datein" />/<input type="text" name="endDateMonth" class="datein" />/<input type="text" name="endDateYear" class="datein" /><br />
+    <input type="submit" value="Submit request" class="button"/>
+    <input type="reset" value="Reset form" class="button" />
 </form>
+<br /><br /><br /><br /><br />
+<h2>Dates already booked</h2>
+{% if bookList|length != 0 %}
+<div id="bookingTable">
 
-<div id="bookingTsble">
-    <h2>Bookings</h2>
-    <table border="1">
+    <table>
     {% for booking in bookList %}
         {% if booking[4] == 'TRUE' %}
             <tr>
@@ -26,4 +29,5 @@
     {% endfor %}
     </table>
 </div>
+{% endif %}
 {% endblock %}
