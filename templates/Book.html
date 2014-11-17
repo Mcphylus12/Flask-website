@@ -2,5 +2,28 @@
 {% block title %}Ongar Bell|Book{% endblock %}
 {% block stylesheets %}<link rel="stylesheet" href="static/css/Book.css" />{% endblock %}
 {% block content %}
+<form action="processBooking" method="post">
+    Name: <input type="text" name="name" /><br />
+    e-mail: <input type="text" name="email" /><br />
+    Date format : DD/MM/YYYY<br />
+    Start date: <input type="text" name="startDateDay" class="datein" />/<input type="text" name="startDateMonth" class="datein" />/<input type="text" name="startDateYear" class="datein" /><br />
+    End date: <input type="text" name="endDateDay" class="datein" />/<input type="text" name="endDateMonth" class="datein" />/<input type="text" name="endDateYear" class="datein" /><br />
+    <input type="submit" value="Submit request" />
+    <input type="reset" value="Reset form" />
+</form>
 
+<div id="bookingTsble">
+    <h2>Bookings</h2>
+    <table border="1">
+    {% for booking in bookList %}
+        {% if booking[4] == 'TRUE' %}
+            <tr>
+                <td>{{ booking[0] }}</td>
+
+                <td>{{ booking[1] }}</td>
+            </tr>
+        {% endif %}
+    {% endfor %}
+    </table>
+</div>
 {% endblock %}

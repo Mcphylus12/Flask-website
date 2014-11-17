@@ -46,8 +46,19 @@ def gallery():
 
 @app.route('/book')
 def book():
-    return render_template('Book.html')
+    return render_template('Book.html',bookList=readFile('static/booking.csv'))
 
+@app.route('/processBooking', methods=['post'])
+def processBooking():#TODO perform regex checks on fields and set errorlist if any errors found
+    errorList = [0]
+    startDate = '/'.join([request.form[('startDateDay')], request.form[('startDateMonth')], request.form[('startDateYear')]])
+    endDate = '/'.join([request.form[('startDateDay')], request.form[('startDateMonth')], request.form[('startDateYear')]])
+    email = request.form[('email')]
+    name = request.form[('name')]
+    bookList = readFile('static/booking.csv')
+    bookList.append([startDate, endDate, name, email, False])
+    writeFile('static/booking.csv', bookList)
+    return render_template('ProcessBooking.html', errorList=errorList)
 
 
 def readFile(File):

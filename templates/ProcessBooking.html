@@ -1,0 +1,11 @@
+{% extends "baseFrame.html" %}
+{% block title %}Process Booking{% endblock %}
+{% block stylesheets %}{% endblock %}
+{% block content %}
+{% if errorList[0] == 0 %}
+Your request was successful click <a href="book">here</a> to return to the bookings page.<br />
+Please Note that this time does not mean that you are booked in. The owner must first review <br />
+your request and approve it. If your request is approved your booking will appea below in the<br />
+list of bookings.
+{%  endif %}
+{% endblock %}
