@@ -2,8 +2,15 @@ form{
     text-align: left;
 }
 
-#bookingTable{
+
+#bookingTable td, th{
     border: 2px solid #989898;
+    width: 10em;
+    text-align: center;
+}
+
+img{
+    float: right;
 }
 
 .datein{

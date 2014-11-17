@@ -18,6 +18,10 @@
 <div id="bookingTable">
 
     <table>
+        <tr>
+            <th>Start Date</th>
+            <th>End Date</th>
+        </tr>
     {% for booking in bookList %}
         {% if booking[4] == 'TRUE' %}
             <tr>
@@ -29,5 +33,8 @@
     {% endfor %}
     </table>
 </div>
+{% else %}
+<p>There are currently no booked slots</p>
 {% endif %}
+
 {% endblock %}

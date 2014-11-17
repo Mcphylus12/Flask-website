@@ -7,5 +7,26 @@ Your request was successful click <a href="book">here</a> to return to the booki
 Please Note that this time does not mean that you are booked in. The owner must first review <br />
 your request and approve it. If your request is approved your booking will appea below in the<br />
 list of bookings.
-{%  endif %}
+{% else %}
+{% for error in errorList %}
+{% if error == 'startdateformatexception' %}
+    Please go back and re fill out your form. The starting date for your booking was invalid
+{% endif %}
+{% if error == 'enddateformatexception' %}
+   Please go back and re fill out your form. The end date for your booking was invalid
+{% endif %}
+{% if error == 'emailformatexception' %}
+   Please go back and re fill out your form. The email for your booking was invalid
+{% endif %}
+{% if error == 'invaliddateexception' %}
+Something was wrong with your Start or End date. Maybe an invalid day for that month.
+{% endif %}
+{% if error == 'leavebeforearriveexception' %}
+Please make sure thta your start date is before your end date
+{% endif %}
+{% if error == 'bookinpastexception' %}
+you cannot book in the past
+{% endif %}
+{% endfor %}
+{% endif %}
 {% endblock %}
