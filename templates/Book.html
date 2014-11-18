@@ -1,6 +1,58 @@
 {% extends "baseFrame.html" %}
 {% block title %}Ongar Bell|Book{% endblock %}
 {% block stylesheets %}<link rel="stylesheet" href="static/css/Book.css" />{% endblock %}
+{% block scripts %}
+<script src="https://code.jquery.com/jquery-1.6.2.min.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function () {
+    'use strict';
+    fillTable(1, 2009);
+});
+
+
+
+function fillTable(month, year) {
+    'use strict';
+    var months = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
+    var day = 1;
+    var startDay = new Date(year, month, 1);
+    var monthLength = new Date(year, month + 1, 0).getDate();
+    var i;
+    $('#bookingTable').empty();
+    $('#bookingTable').append('<table>' +
+                             '<tr>' +
+                             '<td colspan="7">' +
+                             months[month] +
+                             '</td></tr>'
+                             );
+
+    $('#bookingTable').append('<tr><td>Sun</td><td>Mon</td><td>Tue</td><td>Wed</td><td>Thu</td><td>Fri</td><td>Sat</td></tr>');
+    $('#bookingTable').append('<tr>');
+    for (i = 1; i < startDay; i++) {
+        $('#bookingTable').append('<td></td>');
+    }
+
+    for (i = startDay; i <= 7; i++) {
+        $('#bookingTable').append('<td>' + day + '</td>');
+        day++;
+    }
+    $('#bookingTable').append('</tr>');
+    $('#bookingTable').append('<tr>');
+    while (day <= monthLength) {
+        for (i = 1; i <= 7 && day <= monthLength; i++) {
+            $('#bookingTable').append('<td>' + day + '</td>');
+            day++;
+        }
+        $('#bookingTable').append('</tr><tr>');
+    }
+
+    $('#bookingTable').append('</tr></table><br />');
+
+}
+
+</script>
+{% endblock %}
 {% block content %}
 <h2>Request a Reservation</h2>
 <form action="processBooking" method="post">
@@ -14,27 +66,8 @@
 </form>
 <br /><br /><br /><br /><br />
 <h2>Dates already booked</h2>
-{% if bookList|length != 0 %}
 <div id="bookingTable">
 
-    <table>
-        <tr>
-            <th>Start Date</th>
-            <th>End Date</th>
-        </tr>
-    {% for booking in bookList %}
-        {% if booking[4] == 'TRUE' %}
-            <tr>
-                <td>{{ booking[0] }}</td>
-
-                <td>{{ booking[1] }}</td>
-            </tr>
-        {% endif %}
-    {% endfor %}
-    </table>
 </div>
-{% else %}
-<p>There are currently no booked slots</p>
-{% endif %}
 
 {% endblock %}

@@ -49,8 +49,12 @@ def gallery():
 @app.route('/book')
 def book():
     bookList=readFile('static/booking.csv')
-    bookList = cullPastDates(bookList)
-    return render_template('Book.html', bookList=bookList)
+    dateBook = []
+    for booking in bookList:
+        startDateTime = datetime.strptime(booking[0], '%d/%m/%Y')
+        endDateTime = datetime.strptime(booking[1], '%d/%m/%Y')
+        dateBook.append([booking[0], (endDateTime - startDateTime).days])
+    return render_template('Book.html', dateBook=dateBook)
 
 def cullPastDates(bookList):
     for booking in bookList:
