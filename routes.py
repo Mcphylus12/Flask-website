@@ -73,6 +73,7 @@ def processBooking():#TODO perform regex checks on fields and set errorlist if a
     endDate = '/'.join([request.form[('endDateDay')], request.form[('endDateMonth')], request.form[('endDateYear')]])
     email = request.form[('email')]
     name = request.form[('name')]
+    bookList = readFile('static/booking.csv')
     try:
         startDateTime = datetime.strptime(startDate, '%d/%m/%Y')
         endDateTime = datetime.strptime(endDate, '%d/%m/%Y')
@@ -97,10 +98,14 @@ def processBooking():#TODO perform regex checks on fields and set errorlist if a
     if not(emailRegex.match(email)):
         errorList[0] = 1
         errorList.append('emailformatexception')
-
+    for booking in bookList:
+        prevStartDateTime = datetime.strptime(booking[0], '%d/%m/%Y')
+        prevEndDateTime = datetime.strptime(booking[1], '%d/%m/%Y')
+        if not (prevStartDateTime > endDateTime or prevEndDateTime < startDateTime):
+            errorList[0] = 1
+            errorList.append('alreadybookedexception')
 
     if errorList[0] == 0:
-        bookList = readFile('static/booking.csv')
         bookList.append([startDate, endDate, name, email, False])
         writeFile('static/booking.csv', bookList)
     return render_template('ProcessBooking.html', errorList=errorList)

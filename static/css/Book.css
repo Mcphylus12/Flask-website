@@ -3,10 +3,16 @@ form{
 }
 
 
-#bookingTable td, th{
-    border: 2px solid #989898;
-    width: 10em;
-    text-align: center;
+table {
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 2px solid white;
+}
+
+.booked{
+    background-color: red;
 }
 
 img{

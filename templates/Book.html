@@ -1,4 +1,7 @@
 {% extends "baseFrame.html" %}
+{% macro option(month) %}
+<option value="{{month}}">{{month}}</option>
+{% endmacro %}
 {% block title %}Ongar Bell|Book{% endblock %}
 {% block stylesheets %}<link rel="stylesheet" href="static/css/Book.css" />{% endblock %}
 {% block scripts %}
@@ -7,47 +10,89 @@
 
 $(document).ready(function () {
     'use strict';
-    fillTable(1, 2009);
+    var today = new Date();
+    fillTable(today.getMonth(), today.getFullYear());
 });
 
-
+function loadMonth(){
+    var month = document.getElementById('monthDropDown').selectedIndex;
+    var year = document.getElementById('yearDropDown').selectedIndex;
+    var today = new Date();
+    fillTable(month, today.getFullYear() + year);
+}
 
 function fillTable(month, year) {
     'use strict';
+    var bookedDates = [];
+    {% for booking in dateBook %}
+    var dates = '{{booking[0]}}'.split('/');
+    if(dates[2] == year && dates[1] == month+1){
+        dates.push({{ booking[1] }})
+        bookedDates.push(dates)
+    }
+    {% endfor %}
     var months = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
     var day = 1;
-    var startDay = new Date(year, month, 1);
-    var monthLength = new Date(year, month + 1, 0).getDate();
+    var startDay = new Date(year, month, 1).getDay();
+    var monthLength = new Date(year, month+1, 0).getDate();
     var i;
     $('#bookingTable').empty();
     $('#bookingTable').append('<table>' +
                              '<tr>' +
                              '<td colspan="7">' +
-                             months[month] +
+                             months[month] + ' ' + year +
                              '</td></tr>'
                              );
 
     $('#bookingTable').append('<tr><td>Sun</td><td>Mon</td><td>Tue</td><td>Wed</td><td>Thu</td><td>Fri</td><td>Sat</td></tr>');
+
     $('#bookingTable').append('<tr>');
-    for (i = 1; i < startDay; i++) {
+    for (i = 0; i < startDay; i++) {
         $('#bookingTable').append('<td></td>');
     }
 
-    for (i = startDay; i <= 7; i++) {
-        $('#bookingTable').append('<td>' + day + '</td>');
+    for (i = startDay; i < 7; i++) {
+        var booked = false;
+        for (var j = 0; j < bookedDates.length; j++){
+            if (day >= bookedDates[j][0] && day <= parseInt(bookedDates[j][0])+parseInt(bookedDates[j][3])){
+                $('#bookingTable').append('<td class="booked">' + day + '</td>');
+                booked = true;
+                break;
+            }
+
+
+        }
+        if(booked == false){
+             $('#bookingTable').append('<td>' + day + '</td>');
+        }
         day++;
     }
     $('#bookingTable').append('</tr>');
+
     $('#bookingTable').append('<tr>');
     while (day <= monthLength) {
         for (i = 1; i <= 7 && day <= monthLength; i++) {
-            $('#bookingTable').append('<td>' + day + '</td>');
+            var booked = false;
+            for (var j = 0; j < bookedDates.length; j++){
+                if ((day >= bookedDates[j][0]) && day <= parseInt(bookedDates[j][0])+parseInt(bookedDates[j][3])){
+                    $('#bookingTable').append('<td class="booked">' + day + '</td>');
+                    booked = true;
+                    break;
+
+
+                }
+            }
+            if(booked == false){
+                $('#bookingTable').append('<td>' + day + '</td>');
+            }
             day++;
         }
         $('#bookingTable').append('</tr><tr>');
     }
 
-    $('#bookingTable').append('</tr></table><br />');
+    $('#bookingTable').append('</tr>');
+
+    $('#bookingTable').append('</table><br />');
 
 }
 
@@ -65,9 +110,28 @@ function fillTable(month, year) {
     <input type="reset" value="Reset form" class="button" />
 </form>
 <br /><br /><br /><br /><br />
+<select id="monthDropDown">
+    {{ option('January') }}
+    {{ option('February') }}
+    {{ option('March') }}
+    {{ option('April') }}
+    {{ option('May') }}
+    {{ option('June') }}
+    {{ option('July') }}
+    {{ option('August') }}
+    {{ option('September') }}
+    {{ option('October') }}
+    {{ option('November') }}
+    {{ option('December') }}
+</select>
+<select id="yearDropDown">
+    <option value="thisYear">This Year</option>
+    <option value="nextYear">Next Year</option>
+</select>
+<br />
+<button onclick="loadMonth()">View Month</button>
 <h2>Dates already booked</h2>
 <div id="bookingTable">
-
 </div>
 
 {% endblock %}
