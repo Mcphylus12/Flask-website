@@ -18,15 +18,15 @@ def attractions():
     return render_template('Attractions.html')
 
 @app.route('/comments')
-def comments():
+def comments():#
     comList = readFile("static/comments.csv")
-    return render_template('Comments.html', comList=comList, err=False)
+    return render_template('Comments.html', comList=comList, err=False)#errors can only occur when the page is rendered through addComment
 
 @app.route('/addComment', methods=['post'])
 def addComment():
     uName = escape(request.form[('uName')]).replace('\n', ' ').replace('\r', ' ')
-    uComment = (request.form[('uComment')]).replace('\n', ' ').replace('\r', ' ')
-    dateStr = time.strftime("%d-%m-%Y")
+    uComment = (request.form[('uComment')]).replace('\n', ' ').replace('\r', ' ')#remove new lines for csv storage
+    dateStr = time.strftime("%d-%m-%Y")#get current date as string
     if uName == '':
         uName = 'Anonymous'
     comList = readFile("static/comments.csv")
@@ -53,27 +53,22 @@ def book():
     for booking in bookList:
         startDateTime = datetime.strptime(booking[0], '%d/%m/%Y')
         endDateTime = datetime.strptime(booking[1], '%d/%m/%Y')
-        dateBook.append([booking[0], (endDateTime - startDateTime).days])
+        dateBook.append([booking[0], (endDateTime - startDateTime).days])#create a 2D list containing the start date and duration of each booking
     return render_template('Book.html', dateBook=dateBook)
-
-def cullPastDates(bookList):
-    for booking in bookList:
-        bookingDate = datetime.strptime(booking[1], '%d/%m/%Y')
-        if bookingDate - datetime.now() < timedelta(0):
-            bookList.remove(booking)
-    return bookList
 
 
 @app.route('/processBooking', methods=['post'])
-def processBooking():#TODO perform regex checks on fields and set errorlist if any errors found
-    errorList = [0]#flag to check for see if any errors have occured
-    dateRegex = re.compile('^([0-2]?[0-9]|3[0-1])/(0?[0-9]|1[0-2])/([0-9]?[0-9]?[0-9]?[0-9]?)$')
-    emailRegex = re.compile('\w+@\w+\.\w+')
+def processBooking():
+    errorList = [0]#flag to check for see if any errors have occured, each subsequent element could contain a string identifying the error
+    dateRegex = re.compile('^([0-2]?[0-9]|3[0-1])/(0?[0-9]|1[0-2])/([0-9]?[0-9]?[0-9]?[0-9]?)$')#Check for valid date format
+    emailRegex = re.compile('\w+@\w+\.\w+')#check for valid email adress
     startDate = '/'.join([request.form[('startDateDay')], request.form[('startDateMonth')], request.form[('startDateYear')]])
-    endDate = '/'.join([request.form[('endDateDay')], request.form[('endDateMonth')], request.form[('endDateYear')]])
+    endDate = '/'.join([request.form[('endDateDay')], request.form[('endDateMonth')], request.form[('endDateYear')]])#compile date string from input fields
     email = request.form[('email')]
     name = request.form[('name')]
     bookList = readFile('static/booking.csv')
+
+    #try to create a date from the string. This will throw an error if the date is a bad format or an invlid date(e.g. 32/11/2014)
     try:
         startDateTime = datetime.strptime(startDate, '%d/%m/%Y')
         endDateTime = datetime.strptime(endDate, '%d/%m/%Y')
@@ -89,6 +84,7 @@ def processBooking():#TODO perform regex checks on fields and set errorlist if a
         if (startDateTime - datetime.now()) < timedelta(0) or (endDateTime - datetime.now()) < timedelta(0):
             errorList[0] = 1
             errorList.append('bookinpastexception')
+    #if statements to check for each possible error
     if not(dateRegex.match(startDate)):
         errorList[0] = 1
         errorList.append('startdateformatexception')
@@ -110,7 +106,11 @@ def processBooking():#TODO perform regex checks on fields and set errorlist if a
         writeFile('static/booking.csv', bookList)
     return render_template('ProcessBooking.html', errorList=errorList)
 
+@app.errorhandler(404)#404 page
+def notFound(e):
+    return render_template('404.html'), 404
 
+#read and wite between files and lists
 def readFile(File):
 	with open(File, 'r', newline='') as inFile:
 		reader = csv.reader(inFile)

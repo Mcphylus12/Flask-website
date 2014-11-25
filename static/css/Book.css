@@ -1,22 +1,76 @@
 form{
     text-align: left;
+    display: inline-block;
+    width: 40%;
+    vertical-align: top;
 }
 
+img{
+    display: inline-block;
+    max-width: 40%;
 
-table {
+}
+
+#bookingTable{
+    width: 100%;
+    border-radius: 10px;
+    padding: 4%;
+    background-color: #f7f7f7;
+}
+
+table{
     border-collapse: collapse;
+    width: 90%;
+    height: 500px;
 }
 
-table, th, td {
-    border: 2px solid white;
+tr{
+    width: 100%;
+}
+
+td{
+    border: 1px solid black;
+    text-align: left;
+    vertical-align: top;
+    color: black;
+    background-color: #e2e2e2;
 }
 
 .booked{
     background-color: red;
 }
 
-img{
-    float: right;
+.booked p::after{
+    content: 'Booked';
+}
+
+.bookedText{
+    font-weight: bold;
+    font-size: large;
+}
+
+#monthDropDown{
+    display: inline-block;
+    margin-bottom: 1em;
+    width: 10em;
+}
+
+#yearDropDown{
+    display: inline-block;
+    margin-bottom: none;
+    width: 10em;
+}
+
+.selectLabel{
+    color: white;
+    padding-bottom: 5px;
+    text-align: left;
+    display: inline-block;
+}
+
+.button{
+    display: inline;
+    margin: none;
 }
 
 .datein{
